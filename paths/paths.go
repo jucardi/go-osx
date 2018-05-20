@@ -10,7 +10,7 @@ import (
 
 var created []string
 
-// Indicates whether a file or directory exists
+// Exists indicates whether a file or directory exists
 func Exists(path string) (bool, error) {
 	_, err := os.Stat(path)
 	if err == nil {
@@ -22,7 +22,7 @@ func Exists(path string) (bool, error) {
 	return true, err
 }
 
-// Creates a temporary directory and returns the location
+// TempDir creates a temporary directory and returns the location
 func TempDir() (ret string, err error) {
 	ret = path.Join(os.TempDir(), uuid.New().String())
 	err = os.Mkdir(ret, 0755)
@@ -30,6 +30,9 @@ func TempDir() (ret string, err error) {
 	return
 }
 
+// Combine joins any number of path elements into a single path, adding a
+// separating slash if necessary. The result is Cleaned; in particular,
+// all empty strings are ignored.
 func Combine(elem ...string) string {
 	p := strings.Replace(path.Join(elem...), ":/", "://", -1)
 
