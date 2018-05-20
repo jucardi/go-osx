@@ -32,7 +32,7 @@ func TempDir() (ret string, err error) {
 
 // Combine joins any number of path elements into a single path, adding a
 // separating slash if necessary. The result is Cleaned; in particular,
-// all empty strings are ignored.
+// all empty strings are ignored. Handles resulting double '/'and '\'
 func Combine(elem ...string) string {
 	p := strings.Replace(path.Join(elem...), ":/", "://", -1)
 
