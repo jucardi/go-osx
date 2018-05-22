@@ -10,6 +10,10 @@ import (
 
 var created []string
 
+func init() {
+	listenForShutdown()
+}
+
 // Exists indicates whether a file or directory exists
 func Exists(path string) (bool, error) {
 	_, err := os.Stat(path)
