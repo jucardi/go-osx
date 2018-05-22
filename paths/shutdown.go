@@ -5,7 +5,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/sirupsen/logrus"
+	"github.com/jucardi/go-osx/log"
 )
 
 func listenForShutdown() {
@@ -15,7 +15,7 @@ func listenForShutdown() {
 	go func() {
 		sig := <-quit
 
-		logrus.Infof("signal captured: %s", sig.String())
+		log.Get().Infof("signal captured: %s", sig.String())
 		cleanup()
 		os.Exit(0)
 	}()
@@ -24,9 +24,9 @@ func listenForShutdown() {
 func cleanup() {
 	for _, v := range created {
 		if err := os.RemoveAll(v); err != nil {
-			logrus.Warnf("Unable to remove temporary directory, %s", v)
+			log.Get().Warnf("Unable to remove temporary directory, %s", v)
 		} else {
-			logrus.Debugf("Temp Dir '%s' deleted.", v)
+			log.Get().Debugf("Temp Dir '%s' deleted.", v)
 		}
 	}
 }
