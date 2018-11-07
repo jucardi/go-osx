@@ -1,4 +1,14 @@
-all: deps test compile
+all: format vet deps test build
+
+format:
+	@echo "formatting files..."
+	@go get golang.org/x/tools/cmd/goimports
+	@goimports -w -l .
+	@gofmt -s -w -l .
+
+vet:
+	@echo "vetting..."
+	@go vet ./...
 
 deps:
 	@echo "installing dependencies..."
@@ -21,9 +31,6 @@ test: test-deps
 	@cat test-artifacts/gocov.json | gocov-xml > test-artifacts/coverage/coverage.xml
 	@cat test-artifacts/gocov.json | gocov-html > test-artifacts/coverage/coverage.html
 
-compile:
-	@echo "compiling..."
+build: deps
+	@echo "building..."
 	@go build ./...
-
-format:
-	gofmt -s -w -l .

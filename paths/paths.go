@@ -29,7 +29,7 @@ func Exists(path string) (bool, error) {
 // TempDir creates a temporary directory and returns the location
 func TempDir() (ret string, err error) {
 	ret = path.Join(os.TempDir(), uuid.New().String())
-	err = os.Mkdir(ret, 0755)
+	err = os.Mkdir(ret, 0777)
 	addDir(ret)
 	return
 }
