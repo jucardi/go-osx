@@ -1,6 +1,6 @@
 package log
 
-import "gopkg.in/jucardi/go-logger-lib.v1/log"
+import "github.com/jucardi/go-logger-lib/log"
 
 // For more information about how the loggin works in the github.com/jucardi/go-logger-lib/log
 // package, please refer to https://github.com/jucardi/go-logger-lib/blob/master/README.md
